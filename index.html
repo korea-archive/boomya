@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boomya | 개인 데이터가 자산이 되는 시대</title>
+
+    <style>
+        :root {
+            --primary: #0b1c2d;
+            --secondary: #1f4fd8;
+            --accent: #4aa3ff;
+            --text-main: #111;
+            --text-sub: #555;
+            --bg-light: #f7f9fc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Pretendard", "Apple SD Gothic Neo", sans-serif;
+        }
+
+        body {
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        section {
+            padding: 90px 10%;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: var(--text-sub);
+            font-size: 1.05rem;
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.45),
+                    rgba(0, 0, 0, 0.45)),
+                url("assets/bg-main.jpg") center/cover no-repeat;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 720px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: #e0e0e0;
+            font-size: 1.2rem;
+        }
+
+        /* ================= CI ================= */
+        .ci {
+            background: #fff;
+            text-align: center;
+        }
+
+        .ci img {
+            width: 220px;
+            max-width: 70%;
+            margin-bottom: 25px;
+        }
+
+        /* ================= VALUES ================= */
+        .values {
+            background: var(--bg-light);
+        }
+
+        .values>h2 {
+            margin-bottom: 40px;
+        }
+
+        .values> :not(h2):not(.value-grid) {
+            display: none;
+        }
+
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            background: #fff;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .value-card h3 {
+            margin-bottom: 10px;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        /* ================= BUSINESS ================= */
+        .business ul {
+            margin-top: 25px;
+            padding-left: 20px;
+        }
+
+        .business li {
+            margin-bottom: 12px;
+            color: var(--text-sub);
+        }
+
+        /* ===== BUSINESS LAYOUT ===== */
+        .business-wrap {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .business-text ul {
+            margin-top: 20px;
+        }
+
+        .business-text li {
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        .business-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== DATA FLOW (INSIDE BUSINESS) ===== */
+        .data-flow {
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .data-flow h3 {
+            margin-bottom: 40px;
+            font-size: 1.8rem;
+            color: #0b1c2d;
+        }
+
+        .data-flow-diagram {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+
+        /* ================= STRATEGY ================= */
+        .strategy {
+            background: var(--bg-light);
+        }
+
+
+        .timeline div {
+            margin-bottom: 28px;
+            font-size: 1.05rem;
+        }
+
+        .timeline strong {
+            color: var(--secondary);
+        }
+
+        .strategy {
+            background: #f8faf8;
+        }
+
+
+
+        .strategy-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #222;
+        }
+
+
+        /* 카드 그리드 */
+        .strategy-grid {
+            display: grid;
+            /*
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            */
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            /* 👈 제목과 카드 사이 거리 */
+            margin-top: 48px;
+        }
+
+        .strategy-card::before {
+            content: '';
+            position: absolute;
+            top: -18px;
+            /* 카드 위로 튀어나오게 */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 14px;
+            background: #3fa34d;
+            border-radius: 50%;
+        }
+
+        .strategy-card {
+            position: relative;
+            /* dot 기준점 */
+            background: #ffffff;
+            padding: 28px;
+            padding-top: 25px;
+            /* 👈 점을 위한 여유 공간 */
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .strategy-card h3 {
+            font-size: 18px;
+            /* 연도 */
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 12px;
+        }
+
+        .strategy-card .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2e7d32;
+            /* 소제목만 은은한 초록 */
+            margin-top: 14px;
+        }
+
+        .strategy-card p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+
+
+        .strategy-card .year {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #3fa34d;
+            margin-bottom: 16px;
+        }
+
+        .strategy-card h3 {
+            font-size: 0.9rem;
+            color: #3fa34d;
+            margin-top: 16px;
+            margin-bottom: 4px;
+        }
+
+        .strategy-card p {
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        /* 하단 설명 */
+        .strategy-note {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* ================= REVENUE ================= */
+        .revenue {
+
+            padding: 120px 80px;
+            background: #ffffff;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            text-align: left;
+        }
+
+        .section-desc {
+            margin-top: 20px;
+            text-align: left;
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .revenue-grid {
+            margin-top: 80px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+
+        .strategy-box {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .strategy-list li {
+            margin-bottom: 24px;
+        }
+
+        .strategy-list strong {
+            display: block;
+            font-size: 16px;
+            color: #2f8f46;
+            margin-bottom: 6px;
+        }
+
+        .revenue-summary {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .chart-box {
+            width: 100%;
+            padding: 32px;
+        }
+
+        /* ⭐ 핵심: 비율 유지 컨테이너 */
+        .chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            /* PC 기본 */
+        }
+
+        /* canvas는 무조건 꽉 채움 */
+        .chart-wrapper canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .summary-box {
+            background: #f4faf5;
+            border-left: 5px solid #4caf50;
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: var(--primary);
+            color: #bbb;
+            text-align: center;
+            padding: 40px 10%;
+            font-size: 0.9rem;
+        }
+
+        /* =================================================
+       📱 MOBILE / TABLET RESPONSIVE
+    ================================================= */
+        @media (max-width: 1024px) {
+            section {
+                padding: 70px 8%;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .strategy-card::before {
+                left: 24px;
+                transform: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 6%;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2.4rem;
+                line-height: 1.3;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .timeline {
+                padding-left: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 50px 5%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .value-card {
+                padding: 22px;
+            }
+
+            footer {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo span {
+                font-size: 1rem;
+            }
+
+            .logo img {
+                height: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .business-wrap {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* 성장 전략 모바일 */
+        @media (max-width: 768px) {
+            .timeline {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .chart-wrapper {
+                height: 220px;
+            }
+        }
+
+        /* ================= TOP NAV ================= */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #0b1c2d;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .logo img {
+            height: 28px;
+            /* 상단바에 딱 맞는 크기 */
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 22px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #444;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.7rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-menu .icon {
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+
+        .nav-menu a:hover {
+            color: #1f4fd8;
+            transform: translateY(-2px);
+        }
+
+
+        section {
+            scroll-margin-top: 72px;
+            /* 상단 고정 메뉴 높이 */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="top-nav">
+        <div class="nav-inner">
+
+            <!-- LOGO (CI + Boomya) -->
+            <a href="#main" class="logo">
+                <img src="assets/ci-boomya.png" alt="Boomya CI" />
+                <span>Boomya</span>
+            </a>
+
+            <!-- NAV MENU -->
+            <nav class="nav-menu">
+
+                <a href="#values">
+                    <span class="icon">💎</span>
+                    <span class="label">핵심가치</span>
+                </a>
+                <a href="#overview">
+                    <span class="icon">🔁</span>
+                    <span class="label">사업개요</span>
+                </a>
+                <a href="#business">
+                    <span class="icon">🧩</span>
+                    <span class="label">사업내용</span>
+                </a>
+                <a href="#strategy">
+                    <span class="icon">📈</span>
+                    <span class="label">성장전략</span>
+                </a>
+                <a href="#revenue">
+                    <span class="icon">💰</span>
+                    <span class="label">수익예측</span>
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- HERO -->
+    <section id="main" class="hero">
+        <div class="hero-content">
+            <h1>개인의 데이터가<br />자산이 되는 시대</h1>
+            <p>
+                AI 기반 데이터 플랫폼 Boomya는<br />
+                개인의 일상 데이터를 안전하게 보호하고<br />
+                공정한 가치로 다시 돌려줍니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- CI / INTRO -->
+    <section class="ci">
+        <img src="assets/ci-boomya.png" alt="Boomya CI" />
+        <h2>Boomya는 무엇을 하는 기업인가</h2>
+        <p>
+            붐야는 스마트폰에서 생성되는 개인의 비정형 데이터를<br />
+            AI로 정제·가공하여 재식별 불가능한 데이터 자산으로 전환하고,<br />
+            그 가치를 다시 개인에게 환원하는 데이터 플랫폼입니다.
+        </p>
+    </section>
+
+    <!-- CORE VALUES -->
+    <section id="values" class="values">
+        <h2>핵심 가치</h2>
+
+        <div class="value-grid">
+            <div class="value-card">
+                <h3>데이터 주권</h3>
+                <p>개인의 데이터는 개인의 자산이며 모든 수집은 명시적 동의 기반입니다.</p>
+            </div>
+
+            <div class="value-card">
+                <h3>공정한 보상</h3>
+                <p>데이터 활용 가치를 투명하게 산정하여 합리적으로 환원합니다.</p>
+            </div>
+
+            <div class="value-card">
+                <h3>신뢰와 보안</h3>
+                <p>비식별·가명 처리로 개인정보를 근본적으로 보호합니다.</p>
+            </div>
+
+            <div class="value-card">
+                <h3>지속가능성</h3>
+                <p>생산자와 이용자가 함께 성장하는 데이터 생태계를 만듭니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section id="overview" class="overview">
+        <h2>사업개요</h2>
+
+        <p class="overview-intro">
+            데이터 경제 시대에 개인은 방대한 데이터를 생산하지만,
+            그 가치는 개인에게 돌아오지 않고 있습니다.
+            붐야(Boomya)는 이 구조적 문제를 해결하기 위해 탄생한
+            <strong>개인 데이터 주권 기반 AI 플랫폼</strong>입니다.
+        </p>
+
+        <div class="overview-grid">
+            <div class="overview-card">
+                <h3>문제 인식</h3>
+                <p>
+                    스마트폰을 통해 생성되는 대화, 메시지, 사용 패턴 등
+                    개인의 일상 데이터는 AI 학습과 분석의 핵심 자원이지만,
+                    생산자인 개인은 그 가치에서 배제되어 왔습니다.
+                </p>
+            </div>
+
+            <div class="overview-card">
+                <h3>Boomya의 해결책</h3>
+                <p>
+                    붐야는 개인의 명시적 동의를 기반으로 데이터를 수집하고,
+                    AI로 정제·비식별화하여 재식별이 불가능한
+                    데이터 자산으로 전환합니다.
+                </p>
+            </div>
+
+            <div class="overview-card">
+                <h3>데이터 순환 구조</h3>
+                <p>
+                    개인이 생산한 데이터는 플랫폼을 통해
+                    기업·기관에 제공되고,
+                    그 활용 가치는 포인트 또는 원화 연동 방식으로
+                    다시 개인에게 환원됩니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- BUSINESS -->
+    <section id="business" class="business">
+        <h2>사업내용</h2>
+        <div class="business-wrap">
+            <!-- 텍스트 영역 -->
+            <div class="business-text">
+                <p>
+                    붐야는 데이터 경제의 불균형 문제를 해결하며
+                    데이터의 흐름을 개인 중심으로 재설계합니다.
+                </p>
+
+                <ul>
+                    <li>AI 앱 기반 비정형 데이터 수집</li>
+                    <li>AI 자동 정제 및 재식별 불가 처리</li>
+                    <li>기업·기관 대상 데이터 인사이트 제공</li>
+                    <li>포인트 및 원화 연동 보상 구조</li>
+                </ul>
+            </div>
+
+            <!-- 이미지 영역 -->
+            <div class="business-image">
+                <img src="assets/business-visual.png" alt="Boomya 사업 구조 이미지" />
+            </div>
+        </div>
+
+        <div class="data-flow">
+            <h3>Boomya 데이터 순환 구조</h3>
+            <div class="data-flow-diagram">
+
+                <svg viewBox="0 0 800 520" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#4aa3ff" />
+                        </marker>
+                    </defs>
+
+                    <!-- BOX STYLE -->
+                    <style>
+                        .box {
+                            fill: #ffffff;
+                            stroke: #4aa3ff;
+                            stroke-width: 2;
+                            rx: 14;
+                        }
+
+                        .title {
+                            font-size: 16px;
+                            font-weight: bold;
+                            fill: #1f4fd8;
+                        }
+
+                        .desc {
+                            font-size: 13px;
+                            fill: #444;
+                        }
+
+                        .arrow {
+                            stroke: #4aa3ff;
+                            stroke-width: 2;
+                            marker-end: url(#arrow);
+                        }
+                    </style>
+
+                    <!-- 개인 -->
+                    <rect class="box" x="280" y="20" width="240" height="70" />
+                    <text class="title" x="400" y="45" text-anchor="middle">개인 (데이터 생산자)</text>
+                    <text class="desc" x="400" y="65" text-anchor="middle">일상 비정형 데이터 생성</text>
+
+                    <!-- AI 앱 -->
+                    <rect class="box" x="280" y="120" width="240" height="70" />
+                    <text class="title" x="400" y="145" text-anchor="middle">AI 앱 · 데이터 수집</text>
+                    <text class="desc" x="400" y="165" text-anchor="middle">명시적 동의 기반</text>
+
+                    <!-- 플랫폼 -->
+                    <rect class="box" x="260" y="220" width="280" height="90" />
+                    <text class="title" x="400" y="245" text-anchor="middle">Boomya 플랫폼</text>
+                    <text class="desc" x="400" y="265" text-anchor="middle">AI 정제 · 비식별화</text>
+                    <text class="desc" x="400" y="285" text-anchor="middle">재식별 불가 데이터 자산화</text>
+
+                    <!-- 이용자 -->
+                    <rect class="box" x="260" y="340" width="280" height="80" />
+                    <text class="title" x="400" y="365" text-anchor="middle">데이터 이용자</text>
+                    <text class="desc" x="400" y="385" text-anchor="middle">기업 · 연구기관 · 공공기관</text>
+
+                    <!-- 보상 -->
+                    <rect class="box" x="280" y="450" width="240" height="60" />
+                    <text class="title" x="400" y="475" text-anchor="middle">보상 환원</text>
+                    <text class="desc" x="400" y="495" text-anchor="middle">포인트 / 원화 연동</text>
+
+                    <!-- ARROWS -->
+                    <line class="arrow" x1="400" y1="90" x2="400" y2="120" />
+                    <line class="arrow" x1="400" y1="190" x2="400" y2="220" />
+                    <line class="arrow" x1="400" y1="310" x2="400" y2="340" />
+                    <line class="arrow" x1="400" y1="420" x2="400" y2="450" />
+
+                    <!-- RETURN ARROW -->
+                    <path d="M 520 480 C 650 480, 650 60, 520 60" fill="none" stroke="#1f4fd8" stroke-width="2"
+                        marker-end="url(#arrow)" />
+                    <text class="desc" x="650" y="270" text-anchor="middle" fill="#1f4fd8">
+                        가치 환원
+                    </text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- STRATEGY -->
+    <section id="strategy" class="strategy">
+        <h2>5개년 단계별 성장 전략</h2>
+
+
+
+        <!-- 연도별 카드 -->
+        <div class="strategy-grid">
+
+            <div class="strategy-card">
+                <span class="dot"></span>
+                <div class="year">2026</div>
+                <h3>핵심 목표</h3>
+                <p>초기 사용자 기반 형성</p>
+
+                <h3>사용자 목표</h3>
+                <p>3만 명 MAU</p>
+
+                <h3>비즈니스 전략</h3>
+                <p>AI 앱 무료 제공, 데이터 수집 확대</p>
+            </div>
+
+            <div class="strategy-card">
+                <span class="dot"></span>
+                <div class="year">2027</div>
+                <h3>핵심 목표</h3>
+                <p>성장 기반 모델 확립</p>
+
+                <h3>사용자 목표</h3>
+                <p>15만 명 MAU</p>
+
+                <h3>비즈니스 전략</h3>
+                <p>AI 프리미엄 기능 구독 모델 도입</p>
+            </div>
+
+            <div class="strategy-card">
+                <span class="dot"></span>
+                <div class="year">2028</div>
+                <h3>핵심 목표</h3>
+                <p>시장 점유율 확대</p>
+
+                <h3>사용자 목표</h3>
+                <p>50만 명 MAU</p>
+
+                <h3>비즈니스 전략</h3>
+                <p>데이터 가치화 모델 강화, AI 앱 진입점 확대</p>
+            </div>
+
+            <div class="strategy-card">
+                <span class="dot"></span>
+                <div class="year">2029</div>
+                <h3>핵심 목표</h3>
+                <p>글로벌 진출</p>
+
+                <h3>사용자 목표</h3>
+                <p>200만 명 누적 가입자</p>
+
+                <h3>비즈니스 전략</h3>
+                <p>국제 파트너십 구축, 지역별 맞춤형 AI 앱 개발</p>
+            </div>
+
+            <div class="strategy-card">
+                <span class="dot"></span>
+                <div class="year">2030</div>
+                <h3>핵심 목표</h3>
+                <p>글로벌 통합</p>
+
+                <h3>사용자 목표</h3>
+                <p>1,000만 명 MAU</p>
+
+                <h3>비즈니스 전략</h3>
+                <p>데이터 유통 생태계 구축, AI 플랫폼 확장</p>
+            </div>
+
+        </div>
+
+        <p class="strategy-note">
+            5개년 단계별 성장 전략은 붐야 플랫폼의 지속적 확장과
+            글로벌 시장 진출을 위한 계획입니다.
+        </p>
+    </section>
+
+    <!-- REVENUE -->
+    <section id="revenue" class="revenue">
+
+        <h2 class="section-title">수익 구조</h2>
+        <p class="section-desc">
+            데이터 판매 및 분석 처리 수익을 기반으로<br />
+            생산자 보상 이후의 차익을 통해 지속 가능한 성장을 만듭니다.
+        </p>
+
+        <div class="revenue-grid">
+            <!-- 좌측: 차트 -->
+            <div class="chart-box">
+                <h3>MAU 성장 추세</h3>
+                <div class="chart-wrapper">
+                    <canvas id="mauChart"></canvas>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const ctx = document.getElementById('mauChart');
+                        new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['2026', '2027', '2028', '2029', '2030'],
+                                datasets: [{
+                                    label: 'MAU (만 명)',
+                                    data: [3, 15, 50, 200, 1000],
+                                    backgroundColor: '#4caf50',
+                                    borderRadius: 6,
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false, // ⭐ 절대 필수
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        ticks: {
+                                            callback: v => v >= 1000 ? '1k' : v
+                                        }
+                                    }
+                                },
+                                plugins: { legend: { display: false } }
+                            }
+                        });
+                    });
+                </script>
+            </div>
+
+            <!-- 우측: 전략 요약 -->
+            <div class="strategy-box">
+                <h3>성장 전략 및 목표</h3>
+
+                <ul class="strategy-list">
+                    <li>
+                        <strong>2030년 목표</strong>
+                        <p>글로벌 통합 MAU 1,000만 명</p>
+                    </li>
+                    <li>
+                        <strong>확장성</strong>
+                        <p>월간 활성 사용자 기반 수익 구조</p>
+                    </li>
+                    <li>
+                        <strong>글로벌 진출</strong>
+                        <p>한국 → 글로벌 시장 확장</p>
+                    </li>
+                    <li>
+                        <strong>수익화 전략</strong>
+                        <p>데이터 가치 산정 및 투명한 보상 체계</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 하단 요약 -->
+        <div class="revenue-summary">
+            <div class="summary-box">
+                <h4>사용자 기반</h4>
+                <ul>
+                    <li>2026: 3만 명</li>
+                    <li>2027: 15만 명</li>
+                    <li>2028: 50만 명</li>
+                    <li>2029: 200만 명</li>
+                    <li>2030: 1,000만 명</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>수익 모델</h4>
+                <p>
+                    데이터 판매 수익 − 생산자 보상 = 플랫폼 수익<br />
+                    MAU 성장 기반 확장 구조
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© Boomya. AI · Data · Platform</p>
+        <p>개인의 데이터가 존중받는 세상</p>
+    </footer>
+
+</body>
+
+</html>
