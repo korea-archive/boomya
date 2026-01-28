@@ -408,7 +408,8 @@
 
         .footer-brand {
             font-weight: 600;
-            color: #a7e3b1; /* Boomya 그린, 어둠 속 포인트 */
+            color: #a7e3b1;
+            /* Boomya 그린, 어둠 속 포인트 */
         }
 
         .footer-divider {
@@ -537,6 +538,75 @@
                 flex-wrap: wrap;
                 row-gap: 4px;
                 font-size: 12px;
+            }
+        }
+
+        /* =======================
+   REVENUE (수익예측) 모바일 깨짐 해결
+   ======================= */
+        @media (max-width: 768px) {
+
+            /* revenue만 PC 고정 padding을 쓰고 있어서 폭이 과하게 줄어듦 */
+            .revenue {
+                padding: 70px 6% !important;
+                /* section과 동일한 감각으로 */
+            }
+
+            /* 차트(좌) + 전략박스(우) 2열 -> 1열 스택 */
+            .revenue-grid {
+                grid-template-columns: 1fr !important;
+                gap: 24px;
+                margin-top: 36px;
+            }
+
+            /* 하단 요약(2개 박스)도 1열로 */
+            .revenue-summary {
+                grid-template-columns: 1fr !important;
+                gap: 16px;
+                margin-top: 28px;
+            }
+
+            /* 모바일 타이틀/설명 글자 크기 축소 */
+            .section-title {
+                font-size: 28px;
+                line-height: 1.25;
+            }
+
+            .section-desc {
+                font-size: 15px;
+            }
+
+            /* 박스 패딩 과다하면 폭이 더 좁아져 줄바꿈이 심해짐 */
+            .chart-box {
+                padding: 0;
+                /* 기존 32px 제거 */
+            }
+
+            .strategy-box {
+                padding: 20px;
+            }
+
+            /* 한글이 “한 글자씩” 떨어지는 걸 막음 */
+            .strategy-box,
+            .summary-box,
+            .strategy-list,
+            .strategy-list p {
+                word-break: keep-all;
+                overflow-wrap: break-word;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 24px;
+            }
+
+            .strategy-list strong {
+                font-size: 15px;
+            }
+
+            .strategy-box {
+                padding: 18px;
             }
         }
 
